@@ -1,28 +1,78 @@
   [1m[36m (1.8ms)[0m  [1mCREATE TABLE "schema_migrations" ("version" varchar(255) NOT NULL) [0m
-  [1m[35m (1.2ms)[0m  CREATE UNIQUE INDEX "unique_schema_migrations" ON "schema_migrations" ("version")
+  [1m[35m (1.1ms)[0m  CREATE UNIQUE INDEX "unique_schema_migrations" ON "schema_migrations" ("version")
   [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
 Migrating to CreateTodoLists (20131204224505)
   [1m[35m (0.1ms)[0m  begin transaction
   [1m[36m (0.4ms)[0m  [1mCREATE TABLE "todo_lists" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "title" varchar(255), "description" text, "created_at" datetime, "updated_at" datetime) [0m
   [1m[35mSQL (0.2ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES (?)  [["version", "20131204224505"]]
-  [1m[36m (1.3ms)[0m  [1mcommit transaction[0m
+  [1m[36m (1.2ms)[0m  [1mcommit transaction[0m
 Migrating to CreateTodoItems (20131209232612)
   [1m[35m (0.1ms)[0m  begin transaction
-  [1m[36m (0.3ms)[0m  [1mCREATE TABLE "todo_items" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "todo_list_id" integer, "content" varchar(255), "created_at" datetime, "updated_at" datetime) [0m
+  [1m[36m (0.4ms)[0m  [1mCREATE TABLE "todo_items" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "todo_list_id" integer, "content" varchar(255), "created_at" datetime, "updated_at" datetime) [0m
   [1m[35m (0.1ms)[0m  CREATE INDEX "index_todo_items_on_todo_list_id" ON "todo_items" ("todo_list_id")
-  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20131209232612"]]
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20131209232612"]]
   [1m[35m (1.2ms)[0m  commit transaction
 Migrating to AddCompletedAtToTodoItems (20131211194851)
   [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
-  [1m[35m (28.4ms)[0m  ALTER TABLE "todo_items" ADD "completed_at" datetime
+  [1m[35m (0.4ms)[0m  ALTER TABLE "todo_items" ADD "completed_at" datetime
   [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20131211194851"]]
   [1m[35m (1.0ms)[0m  commit transaction
 Migrating to CreateUsers (20140130223357)
   [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
   [1m[35m (0.4ms)[0m  CREATE TABLE "users" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "first_name" varchar(255), "last_name" varchar(255), "email" varchar(255), "password_digest" varchar(255), "created_at" datetime, "updated_at" datetime) 
-  [1m[36m (0.2ms)[0m  [1mCREATE INDEX "index_users_on_email" ON "users" ("email")[0m
-  [1m[35mSQL (0.1ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES (?)  [["version", "20140130223357"]]
-  [1m[36m (1.2ms)[0m  [1mcommit transaction[0m
+  [1m[36m (0.6ms)[0m  [1mCREATE INDEX "index_users_on_email" ON "users" ("email")[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES (?)  [["version", "20140130223357"]]
+  [1m[36m (1.3ms)[0m  [1mcommit transaction[0m
   [1m[35mActiveRecord::SchemaMigration Load (0.2ms)[0m  SELECT "schema_migrations".* FROM "schema_migrations"
-  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
-  [1m[35mActiveRecord::SchemaMigration Load (0.1ms)[0m  SELECT "schema_migrations".* FROM "schema_migrations"
+
+
+Started GET "/" for 127.0.0.1 at 2014-12-19 18:42:58 -0500
+  [1m[36mActiveRecord::SchemaMigration Load (0.4ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by TodoListsController#index as HTML
+  [1m[35mTodoList Load (26.9ms)[0m  SELECT "todo_lists".* FROM "todo_lists"
+  Rendered todo_lists/index.html.erb within layouts/application (30.8ms)
+Completed 200 OK in 1868ms (Views: 1756.3ms | ActiveRecord: 26.9ms)
+
+
+Started GET "/" for 127.0.0.1 at 2014-12-19 18:43:00 -0500
+Processing by TodoListsController#index as HTML
+  [1m[36mTodoList Load (0.2ms)[0m  [1mSELECT "todo_lists".* FROM "todo_lists"[0m
+  Rendered todo_lists/index.html.erb within layouts/application (1.2ms)
+Completed 200 OK in 7ms (Views: 6.2ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/assets/todo_lists.css?body=1" for 127.0.0.1 at 2014-12-19 18:43:00 -0500
+
+
+Started GET "/assets/scaffolds.css?body=1" for 127.0.0.1 at 2014-12-19 18:43:00 -0500
+
+
+Started GET "/assets/todo_items.js?body=1" for 127.0.0.1 at 2014-12-19 18:43:00 -0500
+
+
+Started GET "/assets/todo_items.css?body=1" for 127.0.0.1 at 2014-12-19 18:43:00 -0500
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2014-12-19 18:43:00 -0500
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-12-19 18:43:00 -0500
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2014-12-19 18:43:01 -0500
+
+
+Started GET "/assets/todo_lists.js?body=1" for 127.0.0.1 at 2014-12-19 18:43:01 -0500
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-12-19 18:43:01 -0500
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-12-19 18:43:01 -0500
+
+
+Started GET "/users/new" for 127.0.0.1 at 2014-12-19 18:43:03 -0500
+Processing by UsersController#new as HTML
+  Rendered users/_form.html.erb (85.0ms)
+  Rendered users/new.html.erb within layouts/application (99.9ms)
+Completed 200 OK in 154ms (Views: 106.2ms | ActiveRecord: 0.4ms)
